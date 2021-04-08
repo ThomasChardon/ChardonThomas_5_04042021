@@ -1,0 +1,30 @@
+//  lancer      ..\dart-sass\sass .\SCSS\style.scss .\CSS\style.css --watch
+
+// variables
+$noir : #000;
+
+
+//règles générales
+a {
+    text-decoration: none;
+    color:$noir;
+    cursor: pointer;
+}
+
+//Header
+
+header {
+    background-color: #f3e9f0;
+    .entete {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        nav ul
+        {
+            width: 600px;
+            display: flex;
+            justify-content: space-around;
+            list-style-type: none;
+        }
+    }
+}
