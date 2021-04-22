@@ -6,7 +6,7 @@ $noir : #000;
 $blanc : #fff;
 $couleur-primaire : #e9bb88;
 $couleur-secondaire : #f3e9f0;
-$couleur-tertiaire : #aa83ff;
+$couleur-tertiaire : #c1a4ff;
 //tailles
 $large : 2em;
 $espace_articles : 65px;
@@ -67,7 +67,8 @@ header {
     }
 }
 
-// articles
+//page principale
+// articles 
 .contenu {
     h1 {
         @include police();
@@ -115,6 +116,38 @@ header {
         @include flex_center(center);
         margin: auto;
         margin-top: 5px;
+    }
+}
+//page produit seul
+
+.produit_seul {
+    @include police();
+    @include marges-auto($espace_articles);
+    margin-top: $espace_articles;
+    margin-bottom: $espace_articles;
+    border-radius: 20px;
+    box-shadow: 0 6px 6px darken($blanc, 20%);
+    overflow: hidden;
+    div {
+        overflow: hidden;
+    }
+    h2 {
+        height: 80px;
+        @include police($large);
+        @include flex_center(center);
+        margin: 0;
+    }
+    .produit_ours {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        transition: all 0.4s;
+    }
+    &:hover a img {
+        transform:scale(1.25);
+        transition: all 0.4s;
     }
 }
 
