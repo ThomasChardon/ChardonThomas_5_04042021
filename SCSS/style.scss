@@ -1,5 +1,16 @@
 //  lancer      ..\dart-sass\sass .\SCSS\style.scss .\CSS\style.css --watch
 
+
+//lancer serveur :
+// taper "node serveur" dans le dossier backend, ça doit afficher ok port 3000
+//accès doit etre OK dans navigateur : http://localhost:3000/api/cameras
+//recuperation de données sur serveur :
+// fetch("https://url/truc")
+//  .then(response => console.l)
+//Le then est la promesse, ça fonctionne comme un pipe
+//on met dans la variable response le resultat
+
+
 // variables
 //couleurs
 $noir : #000;
@@ -123,23 +134,39 @@ header {
 .produit_seul {
     @include police();
     @include marges-auto($espace_articles);
+    height: 500px;
     margin-top: $espace_articles;
     margin-bottom: $espace_articles;
     border-radius: 20px;
     box-shadow: 0 6px 6px darken($blanc, 20%);
     overflow: hidden;
+    a {
+        display: flex;
+        height: 100%;
+    }
     div {
+        @include police($large);
+        height: 100%;
+        width: 50%;
         overflow: hidden;
     }
     h2 {
-        height: 80px;
-        @include police($large);
+        @include police();
         @include flex_center(center);
-        margin: 0;
+        width: 50%;
+        margin:0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .description_produit{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
     }
     .produit_ours {
         width: 100%;
         height: 100%;
+        align-content: flex-end;
         object-fit: cover;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
