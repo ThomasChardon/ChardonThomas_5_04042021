@@ -2,7 +2,7 @@
 
 
 //lancer serveur :
-// taper "node serveur" dans le dossier backend, ça doit afficher ok port 3000
+// taper "node serveur" (ou npm start) dans le dossier backend, ça doit afficher ok port 3000
 //accès doit etre OK dans navigateur : http://localhost:3000/api/cameras
 //recuperation de données sur serveur :
 // fetch("https://url/truc")
@@ -48,6 +48,10 @@ a {
     text-decoration: none;
     color:$noir;
     cursor: pointer;
+}
+button {
+    width: 250px;
+    height: 50px;
 }
 //body
 body {
@@ -134,47 +138,43 @@ header {
 .produit_seul {
     @include police();
     @include marges-auto($espace_articles);
+    display: flex;
     height: 500px;
     margin-top: $espace_articles;
     margin-bottom: $espace_articles;
     border-radius: 20px;
     box-shadow: 0 6px 6px darken($blanc, 20%);
     overflow: hidden;
-    a {
-        display: flex;
-        height: 100%;
+    .description_produit {
+        @include police($large);
+        width: 50%;
+        flex-direction: column;
     }
     div {
-        @include police($large);
-        height: 100%;
         width: 50%;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
     }
     h2 {
-        @include police();
         @include flex_center(center);
-        width: 50%;
+        @include police();
         margin:0;
         margin-right: auto;
         margin-left: auto;
     }
-    .description_produit{
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
     .produit_ours {
         width: 100%;
-        height: 100%;
-        align-content: flex-end;
+        height: 510px;
         object-fit: cover;
-        border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;
         transition: all 0.4s;
-    }
-    &:hover a img {
-        transform:scale(1.25);
-        transition: all 0.4s;
+        &:hover {
+            transform:scale(1.25);
+            transition: all 0.4s;
+        }
     }
 }
 
