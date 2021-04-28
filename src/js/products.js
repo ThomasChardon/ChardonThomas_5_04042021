@@ -28,3 +28,41 @@ if (produitseul) {
     imageours.src = listeArray[indice].imageUrl;
     });
 }
+
+{/* <form>
+  <input type="button" value="Démarrer la machine">
+</form>
+<p>La machine est arrêtée.</p> */}
+
+let listePanier = [];
+let btn = document.getElementById('bouton_ajout_panier');
+// console.log(btn);
+// console.log(oursid);
+
+btn.addEventListener('click', updatePanier);
+
+function recuperationPanier() {
+    listePanier = localStorage.getItem("id");
+    // console.log("liste des id : " + listePanier); ///////////
+}
+let btntest = document.getElementById('bouton_voir_panier');
+btntest.addEventListener('click', ajoutPanier);
+
+function ajoutPanier() {
+    recuperationPanier();
+    listePanier = listePanier + "," + oursid;
+    // localStorage.setItem("id", listePanier);
+    console.log(listePanier + " est de type : " + typeof listePanier);
+}
+
+function updatePanier() {
+    if (oursid) {
+        console.error("OK");
+        localStorage.setItem("id", oursid);
+    } else {
+        console.error("PAS MARCHE");
+    }
+}
+function cleanPanier () {
+    localStorage.clear();
+}
