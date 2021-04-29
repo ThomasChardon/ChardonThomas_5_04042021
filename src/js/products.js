@@ -1,20 +1,17 @@
 // import "./functions.js";
-import {ajoutPanier, clearPanier, retraitDuPanier} from './functions.js';
+import {$_GET,ajoutPanier, clearPanier, retraitDuPanier} from './functions.js';
 
-let myurl = new URL(window.location.href); // url vaut l'url de la page en cours
-let oursid = myurl.searchParams.get('id');
+
+let oursid = $_GET('id'); // prend l'id en parametre dans l'url
 
 const produitseul = document.querySelector(".produit_seul");
-
-let listeArray = [];
-const idourson = document.getElementsByTagName('article');
 const nom = document.getElementsByClassName('nom_ourson');
 const description = document.getElementById('description_ourson');
 const prix = document.getElementById('prix_ourson');
 const imageours = document.getElementById('photo_ours');
 let indice = 0;
 
-if (produitseul) {
+if (produitseul) { // SI je suis sur la page de présentation d'un article seulement
     fetch("http://localhost:3000/api/teddies")
     .then((res) => res.json()) // conversion JSON
     .then((listeArray) => {
@@ -32,11 +29,12 @@ if (produitseul) {
     });
 }
 
-let btnAjout = document.getElementById('bouton_ajout_panier');
-btnAjout.addEventListener('click', ajoutPanier);
+let btnAjout = document.getElementById('bouton_ajout_panier');// mon id dans le HTML
+// btnAjout.addEventListener('click', ajoutPanier); // action associée
+btnAjout.addEventListener('click', function(){ajoutPanier(oursid)}); // action associée
 
 let btndelete = document.getElementById('bouton_delete_panier'); // mon id dans le HTML
 btndelete.addEventListener('click', clearPanier); // action associée
 
-let btnminus = document.getElementById('bouton_minus_panier');
+let btnminus = document.getElementById('bouton_minus_panier'); // mon id dans le HTML
 btnminus.addEventListener('click', function(){retraitDuPanier(oursid)}); // action associée

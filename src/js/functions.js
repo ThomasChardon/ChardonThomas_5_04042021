@@ -1,23 +1,22 @@
 export function $_GET(argument) { // export function : permet de l'envoyer dans d'autres fichiers js
-  const url = window.location.href; // url vaut l'url de la page en cours
+  const url = new URL (window.location.href); // url vaut l'url de la page en cours
   
   return url.searchParams.get(argument); // cherche l'argument dans les parametres de l'url. Renvoie null ou la valeur de cet argument
 }
   
 //exemple : let mavariable = $_GET(id); // mavariable vaudra la valeur de l'id dans l'url
 
-let myurl = new URL(window.location.href); // url vaut l'url de la page en cours
-let oursid = myurl.searchParams.get('id');
+
 
 let panier = "";
-let listePanier = []; // pour l'instant inutilisé
+let listePanier = [];
 
-export function ajoutPanier() {
+export function ajoutPanier(leID) { // ajout
   panier = recuperationPanier();
   if (panier == null || panier == "") {
-      panier = oursid;
+      panier = leID;
   } else {
-      panier = panier + "," + oursid;
+      panier = panier + "," + leID;
   }
   localStorage.setItem("id", panier);
 }
@@ -25,6 +24,28 @@ export function ajoutPanier() {
 export function recuperationPanier() {
   let panierEnCours = localStorage.getItem("id");
   return panierEnCours;
+}
+
+export function recuperationQuantite(id){
+  let quantite = 0;
+  panier = recuperationPanier();
+  if (!panier) {
+    return quantite = 0;
+  }
+  else if (panier.length > 30) {
+    listePanier = panier.split(',');
+    for (let i =0; i < listePanier.length; i++){
+      if (listePanier[i] == id) {
+        quantite ++;
+      }
+    }
+    return quantite;
+  } else {
+    if (panier == id) {
+      quantite ++;
+    }
+    return quantite;
+  }
 }
 
 export function clearPanier () {

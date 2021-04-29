@@ -1,5 +1,5 @@
 
-const listeArticle = document.querySelector(".liste_articles");
+const listeArticle = document.querySelector(".liste_articles_accueil");
 
 if (listeArticle) {
     console.log(listeArticle);

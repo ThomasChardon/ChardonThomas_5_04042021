@@ -43,7 +43,7 @@ header .entete nav ul {
   margin-bottom: 65px;
 }
 
-.liste_articles {
+.liste_articles_accueil {
   display: flex;
   flex-wrap: wrap;
 }
@@ -134,6 +134,62 @@ header .entete nav ul {
 .produit_seul .produit_ours:hover {
   transform: scale(1.25);
   transition: all 0.4s;
+}
+
+.article_panier {
+  font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
+  font-size: normal;
+  margin-right: 65px;
+  margin-left: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 65px;
+  width: 100%;
+  height: 200px;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px #e6e6e6;
+  color: #000;
+  overflow: hidden;
+}
+.article_panier div {
+  width: 60%;
+  overflow: hidden;
+}
+.article_panier .renseignements_panier {
+  margin-left: 30px;
+  font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  width: 60%;
+}
+.article_panier .bordure_panier {
+  width: 5px;
+  height: 100%;
+  background-color: #e6e6e6;
+}
+.article_panier .produit_ours_panier {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  transform-origin: left;
+  transition: all 0.4s;
+}
+.article_panier .photo_produit_panier {
+  width: 33%;
+}
+.article_panier:hover a img {
+  transform: scale(1.25);
+  transition: all 0.4s;
+}
+.article_panier h2 {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 footer {
