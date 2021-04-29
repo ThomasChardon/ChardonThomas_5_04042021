@@ -1,3 +1,6 @@
+// import "./functions.js";
+import {ajoutPanier, clearPanier, retraitDuPanier} from './functions.js';
+
 let myurl = new URL(window.location.href); // url vaut l'url de la page en cours
 let oursid = myurl.searchParams.get('id');
 
@@ -29,40 +32,11 @@ if (produitseul) {
     });
 }
 
-{/* <form>
-  <input type="button" value="Démarrer la machine">
-</form>
-<p>La machine est arrêtée.</p> */}
+let btnAjout = document.getElementById('bouton_ajout_panier');
+btnAjout.addEventListener('click', ajoutPanier);
 
-let listePanier = [];
-let btn = document.getElementById('bouton_ajout_panier');
-// console.log(btn);
-// console.log(oursid);
+let btndelete = document.getElementById('bouton_delete_panier'); // mon id dans le HTML
+btndelete.addEventListener('click', clearPanier); // action associée
 
-btn.addEventListener('click', updatePanier);
-
-function recuperationPanier() {
-    listePanier = localStorage.getItem("id");
-    // console.log("liste des id : " + listePanier); ///////////
-}
-let btntest = document.getElementById('bouton_voir_panier');
-btntest.addEventListener('click', ajoutPanier);
-
-function ajoutPanier() {
-    recuperationPanier();
-    listePanier = listePanier + "," + oursid;
-    // localStorage.setItem("id", listePanier);
-    console.log(listePanier + " est de type : " + typeof listePanier);
-}
-
-function updatePanier() {
-    if (oursid) {
-        console.error("OK");
-        localStorage.setItem("id", oursid);
-    } else {
-        console.error("PAS MARCHE");
-    }
-}
-function cleanPanier () {
-    localStorage.clear();
-}
+let btnminus = document.getElementById('bouton_minus_panier');
+btnminus.addEventListener('click', function(){retraitDuPanier(oursid)}); // action associée

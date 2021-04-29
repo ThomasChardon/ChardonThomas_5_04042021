@@ -1,7 +1,7 @@
 //Pour lancer le code avec VSC : faire F1 puis "Run code"
 //Ou bien le raccourci CTRL + ALT + N
 
-import "./products.js"; // marche pas
+import "./products.js";
 // import {$_GET} from "./functions"; // marche pas
 // Uncaught SyntaxError: Cannot use import statement outside a module
 
