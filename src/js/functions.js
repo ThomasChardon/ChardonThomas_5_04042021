@@ -26,6 +26,20 @@ export function recuperationPanier() {
   return panierEnCours;
 }
 
+export function recuperationPanierArray() {
+  panier = recuperationPanier();
+  if (!panier) {
+      console.log("Pas de panier")
+      listePanier.splice(0, listePanier.length); // RAZ tableau
+  }
+  else if (panier.length > 30) {
+      listePanier = panier.split(',');
+  } else {
+      listePanier[0] = panier;
+  }
+  return listePanier;
+}
+
 export function recuperationQuantite(id){
   let quantite = 0;
   panier = recuperationPanier();
@@ -52,25 +66,41 @@ export function clearPanier () {
   localStorage.clear();
 }
 
+export function clearProductPanier (id) {
+  listePanier = recuperationPanierArray();
+
+  if (listePanier == null){
+    console.log("Pas de retrait car panier vide");
+} else {
+    for (let i = 0; i < listePanier.length; i++) {
+        if (listePanier[i] == id) {
+            listePanier.splice(i, 1); //retrait d'un élément du panier
+            i--; // on décrémente i sinon on peut rater des éléments
+            if (listePanier.length == 0){
+              console.log("panier totalement vide");
+              listePanier.splice(0, listePanier.length); // RAZ tableau
+            }
+        }
+    }
+    if (listePanier == null) {
+      clearPanier();
+    } else {
+      panier = listePanier.toString();
+      localStorage.setItem("id", panier);
+    }
+}
+}
+
 export function retraitDuPanier (id) {
   panier = recuperationPanier();
-  if (!panier) {
-      console.log("Pas de panier")
-      listePanier.splice(0, listePanier.length); // RAZ tableau
-  }
-  else if (panier.length > 30) {
-      listePanier = panier.split(',');
-  } else {
-      listePanier[0] = panier;
-  }
-  console.log("Panier avant retrait : " + listePanier);
+  listePanier = recuperationPanierArray();
+  // console.log("Panier avant retrait : " + listePanier);
   if (listePanier == null){
       console.log("Pas de retrait car panier vide");
   } else {
       for (let i = 0; i < listePanier.length; i++) {
           if (listePanier[i] == id) {
-              listePanier.splice(i, 1);
-              console.log("retrait successfull");
+              listePanier.splice(i, 1); //retrait d'un élément du panier
               if (listePanier.length == 0){
                 console.log("panier totalement vide");
                 listePanier.splice(0, listePanier.length); // RAZ tableau
@@ -88,5 +118,5 @@ export function retraitDuPanier (id) {
         localStorage.setItem("id", panier);
       }
   }
-  console.log("Panier APRES retrait : " + panier);
+  // console.log("Panier APRES retrait : " + panier);
 }

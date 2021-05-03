@@ -5,7 +5,7 @@ a {
 }
 
 button {
-  width: 250px;
+  width: 200px;
   height: 50px;
 }
 
@@ -161,6 +161,12 @@ header .entete nav ul {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: 2em;
   width: 60%;
+}
+.article_panier .renseignement_texte {
+  width: 100%;
+}
+.article_panier #titre_total {
+  width: 200px;
 }
 .article_panier .bordure_panier {
   width: 5px;

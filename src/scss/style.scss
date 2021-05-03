@@ -50,7 +50,7 @@ a {
     cursor: pointer;
 }
 button {
-    width: 250px;
+    width: 200px;
     height: 50px;
 }
 //body
@@ -198,6 +198,12 @@ header {
         margin-left: 30px;
         @include police($large);
         width: 60%;
+    }
+    .renseignement_texte {
+        width: 100%;
+    }
+    #titre_total {
+        width: 200px;
     }
     .bordure_panier {
         width: 5px;
