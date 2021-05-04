@@ -66,56 +66,69 @@ if (listeArticlePanier) {
         </button>
     </div>
     </article>`;
+
+      setTimeout(() => {
+          let btnAjout = document.getElementsByClassName('bouton_increment_panier');
+          let btnminus = document.getElementsByClassName('bouton_decrement_panier');
+          let btndelete = document.getElementsByClassName('bouton_delete_panier');
+          let totaux = document.getElementById('renseignement_total');
+      
+          for (let item of btnAjout) { // pour chaque noeud de ma classe bouton
+              item.addEventListener('click', function(){ajoutPanier(item.parentNode.parentNode.id)});
+              item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "+")});
+              item.addEventListener('click', function(){item.previousElementSibling.innerHTML = `Quantité commandée : 
+              ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total : 
+              ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
+              item.addEventListener('click', function(){prixTotal += listeDesPrix[item.parentNode.parentNode.id]});
+              item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
+          }
+          for (let item of btnminus) { // pour chaque noeud de ma classe bouton
+              item.addEventListener('click', function(){retraitDuPanier(item.parentNode.parentNode.id)});
+              item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "-")});
+              item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : 
+              ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total :
+              ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
+              item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
+          }
+          for (let item of btndelete) { // pour chaque noeud de ma classe bouton
+              item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "--")});
+              item.addEventListener('click', function(){clearProductPanier(item.parentNode.parentNode.id)});
+              item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : ${recuperationQuantite(item.parentNode.parentNode.id)}.`}); // marche
+              item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
+          }
+      }, 10); // attente de 100 ms pour laisser le js s'effectuer
+
   });
 }
 
 
 
 
-
-setTimeout(() => {
-    let btnAjout = document.getElementsByClassName('bouton_increment_panier');
-    let btnminus = document.getElementsByClassName('bouton_decrement_panier');
-    let btndelete = document.getElementsByClassName('bouton_delete_panier');
-    let totaux = document.getElementById('renseignement_total');
-
-    for (let item of btnAjout) { // pour chaque noeud de ma classe bouton
-        item.addEventListener('click', function(){ajoutPanier(item.parentNode.parentNode.id)});
-        item.addEventListener('click', function(){totauxDesPrix[item.parentNode.parentNode.id] += listeDesPrix[item.parentNode.parentNode.id]});
-        item.addEventListener('click', function(){item.previousElementSibling.innerHTML = `Quantité commandée : 
-        ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total : 
-        ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
-        item.addEventListener('click', function(){console.log("Ajout au panier")});
-        item.addEventListener('click', function(){prixTotal -= listeDesPrix[item.parentNode.parentNode.id]});
-        item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
-
-
-        // OK mais pour la soustraction il faudra voir car les prix vont en negatif en dessous de zéro
-
-
-
-
-    }
-    for (let item of btnminus) { // pour chaque noeud de ma classe bouton
-        item.addEventListener('click', function(){retraitDuPanier(item.parentNode.parentNode.id)});
-        item.addEventListener('click', function(){totauxDesPrix[item.parentNode.parentNode.id] -= listeDesPrix[item.parentNode.parentNode.id]});
-        item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : 
-        ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total :
-        ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
-        item.addEventListener('click', function(){console.log("retrait d'un element du panier")});
-    }
-    for (let item of btndelete) { // pour chaque noeud de ma classe bouton
-        item.addEventListener('click', function(){clearProductPanier(item.parentNode.parentNode.id)});
-        item.addEventListener('click', function(){totauxDesPrix[item.parentNode.parentNode.id] = 0});
-        item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : ${recuperationQuantite(item.parentNode.parentNode.id)}.`}); // marche
-        item.addEventListener('click', function(){console.log("Suppression totale d'un élément")});
-    }
-
-    // ajouter le prix
-    // inspiration : prix.innerHTML = "Prix : " + (listeArray[indice].price /100) + " €";
-
-}, 100); // attente de 10 ms pour laisser le js s'effectuer
-
-
 // si suppression, changer en display false ?
 //monelement.style.dispay = false; a essayer 
+
+
+function modificationPrix(id, operation) {
+    if (operation == "+") {
+        totauxDesPrix[id] += listeDesPrix[id];
+    }
+    else if (operation == "-") {
+        if ((totauxDesPrix[id] - listeDesPrix[id]) < 0) {
+            console.log("retrait impossible, panier negatif");
+        }
+        else {
+            totauxDesPrix[id] -= listeDesPrix[id];
+            prixTotal -= listeDesPrix[id];
+        }
+    }else if (operation == "--") {
+        if ((prixTotal - (listeDesPrix[id] * recuperationQuantite(id))) < 0) {
+            console.log("retrait impossible, panier negatif");
+        }
+        else {
+            totauxDesPrix[id] -= (listeDesPrix[id] * recuperationQuantite(id));
+            prixTotal -= (listeDesPrix[id] * recuperationQuantite(id));
+        }
+    } else {
+        console.log("Error operation");
+    }
+}

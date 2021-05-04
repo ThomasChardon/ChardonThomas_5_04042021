@@ -6,7 +6,9 @@ export function $_GET(argument) { // export function : permet de l'envoyer dans 
   
 //exemple : let mavariable = $_GET(id); // mavariable vaudra la valeur de l'id dans l'url
 
-
+// export let totauxDesPrix = new Object;
+// export let listeDesPrix = new Object;
+// export let prixTotal = 0;
 
 let panier = "";
 let listePanier = [];
@@ -120,3 +122,28 @@ export function retraitDuPanier (id) {
   }
   // console.log("Panier APRES retrait : " + panier);
 }
+
+// export function modificationPrix(id, operation) {
+//   if (operation == "+") {
+//       totauxDesPrix[id] += listeDesPrix[id];
+//   }
+//   else if (operation == "-") {
+//       if ((totauxDesPrix[id] - listeDesPrix[id]) < 0) {
+//           console.log("retrait impossible, panier negatif");
+//       }
+//       else {
+//           totauxDesPrix[id] -= listeDesPrix[id];
+//           prixTotal -= listeDesPrix[id];
+//       }
+//   }else if (operation == "--") {
+//       if ((prixTotal - (listeDesPrix[id] * recuperationQuantite(id))) < 0) {
+//           console.log("retrait impossible, panier negatif");
+//       }
+//       else {
+//           totauxDesPrix[id] -= (listeDesPrix[id] * recuperationQuantite(id));
+//           prixTotal -= (listeDesPrix[id] * recuperationQuantite(id));
+//       }
+//   } else {
+//       console.log("Error operation");
+//   }
+// }
