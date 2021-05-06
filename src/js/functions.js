@@ -1,3 +1,4 @@
+
 export function $_GET(argument) { // export function : permet de l'envoyer dans d'autres fichiers js
   const url = new URL (window.location.href); // url vaut l'url de la page en cours
   
@@ -123,27 +124,17 @@ export function retraitDuPanier (id) {
   // console.log("Panier APRES retrait : " + panier);
 }
 
-// export function modificationPrix(id, operation) {
-//   if (operation == "+") {
-//       totauxDesPrix[id] += listeDesPrix[id];
-//   }
-//   else if (operation == "-") {
-//       if ((totauxDesPrix[id] - listeDesPrix[id]) < 0) {
-//           console.log("retrait impossible, panier negatif");
-//       }
-//       else {
-//           totauxDesPrix[id] -= listeDesPrix[id];
-//           prixTotal -= listeDesPrix[id];
-//       }
-//   }else if (operation == "--") {
-//       if ((prixTotal - (listeDesPrix[id] * recuperationQuantite(id))) < 0) {
-//           console.log("retrait impossible, panier negatif");
-//       }
-//       else {
-//           totauxDesPrix[id] -= (listeDesPrix[id] * recuperationQuantite(id));
-//           prixTotal -= (listeDesPrix[id] * recuperationQuantite(id));
-//       }
-//   } else {
-//       console.log("Error operation");
-//   }
-// }
+//Ajout de la pastille si il y a des articles dans le panier
+export function AffichagePastille() {
+  let nombreourspanier = recuperationPanierArray();
+  let maPastille = document.getElementById('pastille_panier');
+  if (nombreourspanier.length > 9) {
+    maPastille.innerHTML = "9+";
+    maPastille.style.display = "inherit";
+  } else if (nombreourspanier.length == 0) {
+    maPastille.style.display = "none";
+  }else {
+    maPastille.innerHTML = nombreourspanier.length;
+    maPastille.style.display = "inherit";
+  }
+}

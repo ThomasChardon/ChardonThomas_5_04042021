@@ -35,6 +35,22 @@ header .entete nav ul {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: 2em;
 }
+header .entete nav ul li, header .entete nav ul a {
+  display: flex;
+}
+header .entete nav ul #pastille_panier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  position: relative;
+  left: -110px;
+  top: -10px;
+  font-size: 0.7em;
+  background-color: red;
+}
 
 .contenu h1 {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;

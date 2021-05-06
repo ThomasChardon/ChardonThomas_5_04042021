@@ -78,6 +78,20 @@ header {
             justify-content: space-around;
             list-style-type: none;
             @include police($large);
+            li, a {
+                display: flex;
+            }
+            #pastille_panier {
+                @include flex_center(center);
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                position: relative;// sert à positionner la pastille sur l'icone a 10 px en haut et 110 a gauche
+                left: -110px;
+                top : -10px;
+                font-size:0.7em;
+                background-color: red;
+            }
         }
     }
 }
