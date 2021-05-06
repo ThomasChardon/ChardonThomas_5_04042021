@@ -53,21 +53,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 listeArticlePanier.innerHTML += (article_ours);
               }
           });
+
+          listeArticlePanier.innerHTML += 
+          `<article class="max_width_container renseignement_finalisation">
+          <div><h2 id="titre_total">Total du panier : <div id="renseignement_total">${prixTotal /100},${prixTotal %100} €.</div>  </h2></div>
+          
+          
+          <div class="renseignements_panier">
+              <div>
+                  <form method="POST" action="validationCart.js" id="mon_formulaire">
+                  <p>
+                  <label for="id_lastname">Votre nom</label>
+                  <input type="text" name="Lastname" id="id_lastname"
+                  maxlength="20" placeholder="Ex: Martin "/>
+                  <br/>
+                  <label for="id_firstname">Votre prénom</label>
+                  <input type="text" name="Firstname" id="id_firstname"
+                  maxlength="20" placeholder="Ex: Gabriel "/>
+                  <br/>
+                  <label for="id_mail">Votre e-mail</label>
+                  <input type="text" name="E-MAIL" id="id_mail"
+                  maxlength="20" placeholder="johndoe@gmail.com"/>
+                  <br/>
+                  <label for="id_adress">Votre adresse</label>
+                  <input type="text" name="Adress" id="id_adress"
+                  maxlength="40" placeholder="1 rue Jules Vernes"/>
+                  <br/>
+                  <label for="id_city">Votre ville</label>
+                  <input type="text" name="City" id="id_city"
+                  maxlength="20" placeholder="Paris"/>
+                  <br/>
+                  <button class="bouton_commander">
+                  Finaliser la commande.
+                  </button>
+                  </p>
+                  </form>
+              </div>
+          </div>
+          </article>`;
+
       })
       .then((total) => {
-        listeArticlePanier.innerHTML += 
-        `<article class="article_panier max_width_container">
-        <h2 id="titre_total">Total du panier : </h2>
-        <div class="renseignements_panier">
-            <div id="renseignement_total">
-                ${prixTotal /100},${prixTotal %100} €.
-            </div>
-            <button class="bouton_commander">
-                Finaliser la commande.
-            </button>
-        </div>
-        </article>`;
-    
+
 
               let btnAjout = document.getElementsByClassName('bouton_increment_panier');
               let btnminus = document.getElementsByClassName('bouton_decrement_panier');
@@ -109,7 +136,66 @@ document.addEventListener("DOMContentLoaded", () => {
             observer.observe(targetNode, config);
             // L'observation peut être arrêtée par la suite
             // observer.disconnect();
-    
+
+
+              // validation des données
+            //   myInput.addEventListener('input',function(e) {
+            //     var value = e.target.value;
+            //         if (value.startsWith('Hello ')) {
+            //             isValid = true;
+            //         } else {
+            //             isValid = false;
+            //         }
+            //     });
+
+            // function isValid(value) {
+            //     return /^e[0-9]{3,}$/.test(value);
+            // }
+
+            // voir aussi pour le post
+//             var request = new XMLHttpRequest();
+// request.open("POST", "http://url-service-web.com/api/users");
+// request.setRequestHeader("Content-Type", "application/json");
+// request.send(JSON.stringify(jsonBody));
+
+              //window.location pour redirection
+
+            // POST
+            window.addEventListener("load", function () {
+                function sendData() {
+                  let XHR = new XMLHttpRequest();
+              
+                  // Liez l'objet FormData et l'élément form
+                  let FD = new FormData(form);
+                  console.log(FD);
+              
+                  // Définissez ce qui se passe si la soumission s'est opérée avec succès
+                  XHR.addEventListener("load", function(event) {
+                    alert(event.target.responseText);
+                  });
+              
+                  // Definissez ce qui se passe en cas d'erreur
+                  XHR.addEventListener("error", function(event) {
+                    alert('Oups! Quelque chose s\'est mal passé.');
+                  });
+              
+                  // Configurez la requête
+                  XHR.open("POST", "http://localhost:3000/api/teddies");
+              
+                  // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
+                  XHR.send(FD);
+                }
+              
+                // Accédez à l'élément form …
+                let form = document.getElementById("mon_formulaire");
+              
+                // … et prenez en charge l'événement submit.
+                form.addEventListener("submit", function (event) {
+                  event.preventDefault();
+              
+                  sendData();
+                });
+              });
       });
     }
     

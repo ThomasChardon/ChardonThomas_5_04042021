@@ -155,8 +155,6 @@ header .entete nav ul #pastille_panier {
 .article_panier {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: normal;
-  margin-right: 65px;
-  margin-left: 65px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -212,6 +210,46 @@ header .entete nav ul #pastille_panier {
   justify-content: center;
   padding-right: 30px;
   padding-left: 30px;
+}
+
+.renseignement_finalisation {
+  font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px #e6e6e6;
+  background-color: #e6e6e6;
+  height: 350px;
+  margin-bottom: 65px;
+}
+.renseignement_finalisation #renseignement_total {
+  margin-left: 30px;
+  text-align: center;
+}
+.renseignement_finalisation .renseignements_panier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
+  font-size: normal;
+  height: 100%;
+}
+.renseignement_finalisation .renseignements_panier div {
+  width: 100%;
+}
+.renseignement_finalisation .renseignements_panier div label {
+  display: inline-block;
+  clear: left;
+  width: 250px;
+  text-align: right;
+}
+.renseignement_finalisation .renseignements_panier div input {
+  display: inline-block;
+  height: 30px;
+  width: 400px;
 }
 
 footer {

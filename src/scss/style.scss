@@ -195,7 +195,6 @@ header {
 // page panier 
 .article_panier {
     @include police();
-    @include marges-auto($espace_articles);
     @include flex_center(center);
     margin-bottom: $espace_articles;
     width : 100%;
@@ -212,6 +211,7 @@ header {
         margin-left: 30px;
         @include police($large);
         width: 60%;
+        // height: 400px;
     }
     .renseignement_texte {
         width: 100%;
@@ -241,16 +241,47 @@ header {
         transform:scale(1.25);
         transition: all 0.4s;
     }
-
     h2 {
         width: 100px ;
         display: flex;
         align-items: center;
         justify-content: center;
-        // margin-right: 30px;
-        // margin-left: 30px;
         padding-right: 30px;
         padding-left: 30px;
+    }
+}
+.renseignement_finalisation {
+    @include police($large);
+    @include flex_center(center);
+    justify-content: space-evenly;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px darken($blanc, 10%);
+    background-color: darken($blanc, 10%);
+    height: 350px;
+    margin-bottom: $espace_articles;
+    #renseignement_total {
+        // @include police($large);
+        margin-left: 30px;
+        text-align: center;
+    }
+    .renseignements_panier {
+        @include flex_center(center);
+        @include police();
+        height: 100%;
+        div {
+            width: 100%;
+            label{
+                display: inline-block;
+                clear: left;
+                width: 250px;
+                text-align: right;
+            }
+            input {
+                display: inline-block;
+                height: 30px;
+                width: 400px;
+            }
+        }
     }
 }
 
