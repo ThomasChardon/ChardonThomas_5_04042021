@@ -50,8 +50,13 @@ a {
     cursor: pointer;
 }
 button {
-    width: 200px;
+    @include police(1.5em);
+    @include flex_center(center);
+    flex-direction: row;
+    width: 50px;
     height: 50px;
+    border-radius: 30px;
+    background-color: $couleur-primaire;
 }
 //body
 body {
@@ -193,6 +198,19 @@ header {
 }
 
 // page panier 
+.titre_panier {
+    display: flex;
+    align-items: center;
+    margin-bottom: $espace_articles;
+    margin-top: $espace_articles;
+    @include police(2em);
+    h1 {
+        @include police(1.5em);
+        margin : 0;
+        margin-left : $espace_articles;
+    }
+}
+
 .article_panier {
     @include police();
     @include flex_center(center);
@@ -208,13 +226,15 @@ header {
         overflow: hidden;
     }
     .renseignements_panier {
-        margin-left: 30px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        // margin-left: 30px;
         @include police($large);
         width: 60%;
-        // height: 400px;
     }
     .renseignement_texte {
-        width: 100%;
+        width: 75%;
     }
     #titre_total {
         width: 200px;
@@ -280,6 +300,11 @@ header {
                 display: inline-block;
                 height: 30px;
                 width: 400px;
+            }
+            .bouton_commander {
+                @include police(1em);
+                width: 400px;
+                margin-top : 10px;
             }
         }
     }

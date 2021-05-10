@@ -1,5 +1,5 @@
 
-import {$_GET, recuperationQuantite, clearProductPanier, retraitDuPanier, ajoutPanier, recuperationPanierArray, AffichagePastille} from './functions.js';
+import {$_GET, recuperationQuantite, clearProductPanier, retraitDuPanier, ajoutPanier, clearPanier, AffichagePastille} from './functions.js';
 const listeArticlePanier = document.querySelector(".liste_articles_panier");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -32,13 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
                             Quantité commandée : ${nombreourspanier}, prix total : ${prixCalcule /100},${prixCalcule %100} €.
                         </div>
                         <button class="bouton_increment_panier">
-                            Ajouter au panier.
+                            +
                         </button>
                         <button class="bouton_decrement_panier">
-                            retirer un du panier.
+                            -
                         </button>
                         <button class="bouton_delete_panier">
-                            retirer tous du panier.
+                            X
                         </button>
                     </div>
                     <div class="bordure_panier">
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <div class="renseignements_panier">
               <div>
-                  <form method="POST" action="validationCart.js" id="mon_formulaire">
+                  <form method="POST" id="mon_formulaire">
                   <p>
                   <label for="id_lastname">Votre nom</label>
                   <input type="text" name="Lastname" id="id_lastname"
@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   <input type="text" name="Firstname" id="id_firstname"
                   maxlength="20" placeholder="Ex: Gabriel "/>
                   <br/>
-                  <label for="id_mail">Votre e-mail</label>
-                  <input type="text" name="E-MAIL" id="id_mail"
+                  <label for="email">Votre e-mail</label>
+                  <input type="email" name="email" id="email"
                   maxlength="20" placeholder="johndoe@gmail.com"/>
                   <br/>
                   <label for="id_adress">Votre adresse</label>
@@ -95,7 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((total) => {
 
-
+              let btnSuppressionTotale = document.getElementById('suppression_panier');
+              btnSuppressionTotale.addEventListener('click', function(){clearPanier()});
               let btnAjout = document.getElementsByClassName('bouton_increment_panier');
               let btnminus = document.getElementsByClassName('bouton_decrement_panier');
               let btndelete = document.getElementsByClassName('bouton_delete_panier');
@@ -153,49 +154,79 @@ document.addEventListener("DOMContentLoaded", () => {
             // }
 
             // voir aussi pour le post
-//             var request = new XMLHttpRequest();
-// request.open("POST", "http://url-service-web.com/api/users");
-// request.setRequestHeader("Content-Type", "application/json");
-// request.send(JSON.stringify(jsonBody));
+            //             var request = new XMLHttpRequest();
+            // request.open("POST", "http://url-service-web.com/api/users");
+            // request.setRequestHeader("Content-Type", "application/json");
+            // request.send(JSON.stringify(jsonBody));
 
               //window.location pour redirection
 
             // POST
-            window.addEventListener("load", function () {
-                function sendData() {
-                  let XHR = new XMLHttpRequest();
+            // window.addEventListener("load", function () {
+                // function sendData() {
+                //   let XHR = new XMLHttpRequest();
               
-                  // Liez l'objet FormData et l'élément form
-                  let FD = new FormData(form);
-                  console.log(FD);
+                //   console.log(maNode);
+                //   // Liez l'objet FormData et l'élément form
+                //   let FD = new FormData(maNode);
+                //   console.log(FD);
               
+                // //   let data = JSON.stringify(maNode);
+                //   console.log(data);
                   // Définissez ce qui se passe si la soumission s'est opérée avec succès
-                  XHR.addEventListener("load", function(event) {
-                    alert(event.target.responseText);
-                  });
+                //   XHR.addEventListener("load", function(event) {
+                //     alert(event.target.responseText);
+                //   });
               
-                  // Definissez ce qui se passe en cas d'erreur
-                  XHR.addEventListener("error", function(event) {
-                    alert('Oups! Quelque chose s\'est mal passé.');
-                  });
+                //   // Definissez ce qui se passe en cas d'erreur
+                //   XHR.addEventListener("error", function(event) {
+                //     alert('Oups! Quelque chose s\'est mal passé.');
+                //   });
               
-                  // Configurez la requête
-                  XHR.open("POST", "http://localhost:3000/api/teddies");
+                //   // Configurez la requête
+                //   XHR.open("POST", "http://localhost:3000/api/teddies/order");
               
-                  // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
-                  XHR.send(FD);
-                }
+                //   // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
+                // //   XHR.send(FD);
+                // }
               
                 // Accédez à l'élément form …
-                let form = document.getElementById("mon_formulaire");
+                // let form = document.getElementById("mon_formulaire");
+                // console.log(form);
               
                 // … et prenez en charge l'événement submit.
-                form.addEventListener("submit", function (event) {
-                  event.preventDefault();
+                // form.addEventListener("submit", function (event) {
+                //   event.preventDefault();
               
-                  sendData();
-                });
-              });
+                //   sendData();
+                  // penser à rajouter une action au formulaire (action="validationCart.js" ?)
+                // });
+
+
+
+                // Selectionne le noeud dont les mutations seront observées
+                let maNode = document.getElementById('mon_formulaire');
+            // Options de l'observateur (quelles sont les mutations à observer)
+            // let config = { attributes: true, childList: true, subtree: true };
+            // Créé une instance de l'observateur lié à la fonction de callback
+            let monObserver = new MutationObserver(handleSubmit);
+            // Commence à observer le noeud cible pour les mutations précédemment configurées
+            monObserver.observe(maNode, config);
+
+                function handleSubmit(event) {
+                    event.preventDefault();
+                    const data = new FormData(event.target);
+                    // const data = new FormData(form);
+                    console.log(data);
+                    const value = data.get('email');
+                    // console.log(value);
+                    }
+                    const form = document.querySelector('form');
+                    // console.log(form);
+                    form.addEventListener('submit', handleSubmit);
+
+
+            //   });// fonction load
       });
     }
     
