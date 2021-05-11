@@ -41,6 +41,31 @@ $espace_articles : 65px;
     margin-right: $specification;
     margin-left: $specification;
 }
+//keyfrmes
+@keyframes hoverBoutons {
+    0% {
+        transform: scale(1);
+    }
+    20% {
+        transform: scale(1.1);
+    }
+    40% {
+        transform: scale(1.2);
+    }
+    60% {
+        transform: scale(1.3);
+    }
+    80% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+@keyframes stopHover {
+    from   {transform: scale(1.2); }
+    to {transform: scale(1);}
+}
 
 //règles générales
 //liens
@@ -57,6 +82,13 @@ button {
     height: 50px;
     border-radius: 30px;
     background-color: $couleur-primaire;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    animation: stopHover 200ms;
+    &:hover {
+        animation: hoverBoutons 125ms ease-in-out alternate forwards;
+    }
 }
 //body
 body {
@@ -235,6 +267,9 @@ header {
     }
     .renseignement_texte {
         width: 75%;
+        height: 40px;
+        margin-top: 30px;
+        margin-bottom: 30px;
     }
     #titre_total {
         width: 200px;
@@ -280,7 +315,6 @@ header {
     height: 350px;
     margin-bottom: $espace_articles;
     #renseignement_total {
-        // @include police($large);
         margin-left: 30px;
         text-align: center;
     }
@@ -300,10 +334,13 @@ header {
                 display: inline-block;
                 height: 30px;
                 width: 400px;
+                border-radius: 10px;
             }
             .bouton_commander {
                 @include police(1em);
                 width: 400px;
+                position: relative;// sert à positionner un peu plus a gauche
+                left: -150px;
                 margin-top : 10px;
             }
         }
