@@ -11,8 +11,23 @@ export function $_GET(argument) { // export function : permet de l'envoyer dans 
 // export let listeDesPrix = new Object;
 // export let prixTotal = 0;
 
+let OrderId = 0;
 let panier = "";
 let listePanier = [];
+
+export function recuperationOrderID() {
+  let IDEnCours = localStorage.getItem("Orderid");
+  return IDEnCours;
+}
+export function ajoutOrderID() { // ajout ID
+  OrderId = recuperationOrderID();
+  if (OrderId == null || OrderId == "") {
+    OrderId = 0;
+  } else {
+    OrderId++;
+  }
+  localStorage.setItem("Orderid", OrderId);
+}
 
 export function ajoutPanier(leID) { // ajout
   panier = recuperationPanier();

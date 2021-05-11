@@ -1,5 +1,6 @@
 
-import {$_GET, recuperationQuantite, clearProductPanier, retraitDuPanier, ajoutPanier, clearPanier, AffichagePastille} from './functions.js';
+import {ajoutOrderID, recuperationOrderID, recuperationPanierArray, recuperationQuantite, 
+    clearProductPanier, retraitDuPanier, ajoutPanier, clearPanier, AffichagePastille} from './functions.js';
 const listeArticlePanier = document.querySelector(".liste_articles_panier");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -53,45 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 listeArticlePanier.innerHTML += (article_ours);
               }
           });
-
-          listeArticlePanier.innerHTML += 
-          `<article class="max_width_container renseignement_finalisation">
-          <div><h2 id="titre_total">Total du panier : <div id="renseignement_total">${prixTotal /100},${prixTotal %100} €.</div>  </h2></div>
-          
-          
-          <div class="renseignements_panier">
-              <div>
-                  <form method="POST" id="mon_formulaire">
-                  <p>
-                  <label for="id_lastname">Votre nom</label>
-                  <input type="text" name="Lastname" id="id_lastname"
-                  maxlength="20" placeholder="Ex: Martin "/>
-                  <br/>
-                  <label for="id_firstname">Votre prénom</label>
-                  <input type="text" name="Firstname" id="id_firstname"
-                  maxlength="20" placeholder="Ex: Gabriel "/>
-                  <br/>
-                  <label for="email">Votre e-mail</label>
-                  <input type="email" name="email" id="email"
-                  maxlength="20" placeholder="johndoe@gmail.com"/>
-                  <br/>
-                  <label for="id_adress">Votre adresse</label>
-                  <input type="text" name="Adress" id="id_adress"
-                  maxlength="40" placeholder="1 rue Jules Vernes"/>
-                  <br/>
-                  <label for="id_city">Votre ville</label>
-                  <input type="text" name="City" id="id_city"
-                  maxlength="20" placeholder="Paris"/>
-                  <br/>
-                  <button class="bouton_commander">
-                  Finaliser la commande.
-                  </button>
-                  </p>
-                  </form>
-              </div>
-          </div>
-          </article>`;
-
+          //Màj du prix du panier total
+          const miseAPrix = document.getElementById('renseignement_total');
+          miseAPrix.innerHTML = `${prixTotal /100},${prixTotal %100} €.`;
       })
       .then((total) => {
 
@@ -135,8 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let observer = new MutationObserver(AffichagePastille);
             // Commence à observer le noeud cible pour les mutations précédemment configurées
             observer.observe(targetNode, config);
-            // L'observation peut être arrêtée par la suite
-            // observer.disconnect();
+
 
 
               // validation des données
@@ -162,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
               //window.location pour redirection
 
             // POST
-            // window.addEventListener("load", function () {
+
                 // function sendData() {
                 //   let XHR = new XMLHttpRequest();
               
@@ -204,31 +168,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-                // Selectionne le noeud dont les mutations seront observées
-                let maNode = document.getElementById('mon_formulaire');
-            // Options de l'observateur (quelles sont les mutations à observer)
-            // let config = { attributes: true, childList: true, subtree: true };
-            // Créé une instance de l'observateur lié à la fonction de callback
-            let monObserver = new MutationObserver(handleSubmit);
-            // Commence à observer le noeud cible pour les mutations précédemment configurées
-            monObserver.observe(maNode, config);
-
-                function handleSubmit(event) {
-                    event.preventDefault();
-                    const data = new FormData(event.target);
-                    // const data = new FormData(form);
-                    console.log(data);
-                    const value = data.get('email');
-                    // console.log(value);
-                    }
-                    const form = document.querySelector('form');
-                    // console.log(form);
-                    form.addEventListener('submit', handleSubmit);
+                
 
 
-            //   });// fonction load
+
       });
     }
+
+
+
+    let monFormulaire = document.getElementById('mon_formulaire');
+    // console.log(monFormulaire);
+
+    
+
+    monFormulaire.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let order_id = 0;
+        //   ajoutOrderID(); 
+          order_id = recuperationOrderID();
+          console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
+          let contact = new Object;
+          let produits = [];
+          produits = recuperationPanierArray();
+          
+          const inputs = monFormulaire.querySelectorAll("input");
+          for (const items of inputs) {
+              //   console.log(items.value);
+              //   console.log(items.name);
+              contact[items.name] = items.value;
+            }
+            console.log(contact); // object ok i guess
+            console.log(produits); // tableau ok i guess
+            
+
+
+          // il me faut un contact en objet et un tableau de produits
+    });
+
+    // recup les données avec document get
+
+    // verif mes données
+
+    // bloquer soumission données (bloquer en css pointer event)
+
+    //new form data
+
+    //conversion json
+
+    //post
+
+
+
+
+
+    
+
+
+
+
+
+
+
+    // Options de l'observateur (quelles sont les mutations à observer)
+    // let config = { attributes: true, childList: true, subtree: true };
+    // // Créé une instance de l'observateur lié à la fonction de callback
+    // let monObserver = new MutationObserver(handleSubmit);
+    // // Commence à observer le noeud cible pour les mutations précédemment configurées
+    // monObserver.observe(maNode, config);
+
+    //     function handleSubmit(event) {
+    //         event.preventDefault();
+    //         const data = new FormData(event.target);
+    //         // const data = new FormData(form);
+    //         console.log(data);
+    //         const value = data.get('email');
+    //         // console.log(value);
+    //         }
+    //         const form = document.querySelector('form');
+    //         // console.log(form);
+    //         form.addEventListener('submit', handleSubmit);
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     function modificationPrix(id, operation) {
         if (operation == "+") {
@@ -254,6 +287,9 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Error operation");
         }
     }
+
+
+
 
 
 
