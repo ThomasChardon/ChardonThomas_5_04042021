@@ -18,6 +18,7 @@ $blanc : #fff;
 $couleur-primaire : #e9bb88;
 $couleur-secondaire : #f3e9f0;
 $couleur-tertiaire : #c1a4ff;
+$couleur-rouge-leger : #ff6a6a;
 //tailles
 $large : 2em;
 $espace_articles : 65px;
@@ -89,6 +90,9 @@ button {
     &:hover {
         animation: hoverBoutons 125ms ease-in-out alternate forwards;
     }
+}
+.bouton_delete_panier, #bouton_delete_panier {
+    background-color: $couleur-rouge-leger;
 }
 //body
 body {
@@ -240,6 +244,9 @@ header {
         @include police(1.5em);
         margin : 0;
         margin-left : $espace_articles;
+    }
+    #suppression_panier {
+        background-color: $couleur-rouge-leger;
     }
 }
 

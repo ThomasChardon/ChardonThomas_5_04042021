@@ -52,6 +52,10 @@ button:hover {
   animation: hoverBoutons 125ms ease-in-out alternate forwards;
 }
 
+.bouton_delete_panier, #bouton_delete_panier {
+  background-color: #ff6a6a;
+}
+
 body {
   margin: 0;
 }
@@ -208,6 +212,9 @@ header .entete nav ul #pastille_panier {
   font-size: 1.5em;
   margin: 0;
   margin-left: 65px;
+}
+.titre_panier #suppression_panier {
+  background-color: #ff6a6a;
 }
 
 .article_panier {
