@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
         //prendre les infos en dur dans l'URL
         //let nom = $get (lastname) ect...
         // modifier innerhtml avec les variables
-
+        
+        
 
         //On affiche la pastille qu'une fois parce qu'elle n'est pas destinée à changer sur cette page
         AffichagePastille();

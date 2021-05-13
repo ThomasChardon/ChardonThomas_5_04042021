@@ -32,6 +32,14 @@ a {
   cursor: pointer;
 }
 
+input:focus {
+  outline: none;
+  border: 2px solid #e9bb88;
+}
+input:not(:focus):not(:placeholder-shown):invalid {
+  border: 2px solid red;
+}
+
 button {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: 1.5em;
@@ -320,7 +328,7 @@ header .entete nav ul #pastille_panier {
   display: inline-block;
   height: 30px;
   width: 400px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .renseignement_finalisation .renseignements_panier div .bouton_commander {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;

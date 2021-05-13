@@ -118,78 +118,36 @@ document.addEventListener("DOMContentLoaded", () => {
             //     return /^e[0-9]{3,}$/.test(value);
             // }
 
-            // voir aussi pour le post
-            //             var request = new XMLHttpRequest();
-            // request.open("POST", "http://url-service-web.com/api/users");
-            // request.setRequestHeader("Content-Type", "application/json");
-            // request.send(JSON.stringify(jsonBody));
 
               //window.location pour redirection
 
-            // POST
-
-                // function sendData() {
-                //   let XHR = new XMLHttpRequest();
-              
-                //   console.log(maNode);
-                //   // Liez l'objet FormData et l'élément form
-                //   let FD = new FormData(maNode);
-                //   console.log(FD);
-              
-                // //   let data = JSON.stringify(maNode);
-                //   console.log(data);
-                  // Définissez ce qui se passe si la soumission s'est opérée avec succès
-                //   XHR.addEventListener("load", function(event) {
-                //     alert(event.target.responseText);
-                //   });
-              
-                //   // Definissez ce qui se passe en cas d'erreur
-                //   XHR.addEventListener("error", function(event) {
-                //     alert('Oups! Quelque chose s\'est mal passé.');
-                //   });
-              
-                //   // Configurez la requête
-                //   XHR.open("POST", "http://localhost:3000/api/teddies/order");
-              
-                //   // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
-                // //   XHR.send(FD);
-                // }
-              
-                // Accédez à l'élément form …
-                // let form = document.getElementById("mon_formulaire");
-                // console.log(form);
-              
-                // … et prenez en charge l'événement submit.
-                // form.addEventListener("submit", function (event) {
-                //   event.preventDefault();
-              
-                //   sendData();
-                  // penser à rajouter une action au formulaire (action="validationCart.js" ?)
-                // });
-
-
-
-                
-
-
 
       });
-    }
 
 
 
-    let monFormulaire = document.getElementById('mon_formulaire');
-    // console.log(monFormulaire);
 
-    
 
-    monFormulaire.addEventListener("submit", function (event) {
+
+
+
+
+
+      
+      
+      
+      let monFormulaire = document.getElementById('mon_formulaire');
+      // console.log(monFormulaire);
+      
+      
+      
+      monFormulaire.addEventListener("submit", function (event) {
           event.preventDefault();
 
           let order_id = 0;
-        //   ajoutOrderID(); 
+          //   ajoutOrderID(); 
           order_id = recuperationOrderID();
-        //   console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
+          //   console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
           let contact = new Object();
           let products = [];
           products = recuperationPanierArray();
@@ -208,21 +166,33 @@ document.addEventListener("DOMContentLoaded", () => {
             // console.log(JSON.stringify(checkout));
             
             fetch("http://localhost:3000/api/teddies/order", {
-            method: "POST",
-            headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            },
-            body: JSON.stringify(checkout),
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(checkout),
             })
             .then((res) => res.json())
-            .then((data) => order_id = data.orderId)
-            .then((oui) => console.log(order_id));
-
-            // console.log(order_id);
-
+            .then((data) => {
+                order_id = data.orderId;
+                let firstName = data.contact.firstName;
+                let lastName = data.contact.lastName;
+                let address = data.contact.address;
+                let city = data.contact.city;
+                let email = data.contact.email;
+                
+                let URL = "../../pages/confirmation/?Order_id=" + order_id + "&firstName=" + firstName + "&lastName=" + lastName
+                + "&address=" + address + "&city=" + city + "&email=" + email;
+                // console.log(data);
+                window.location.assign(URL);
             });
-
+            //ajouter prenom nom adresse ville email
+            
+            
+        }); // fin du clic formulaire
+        
+    }
     // recup les données avec document get
 
     // verif mes données
@@ -234,49 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //conversion json
 
     //post
-
-
-
-
-
-    
-
-
-
-
-
-
-
-    // Options de l'observateur (quelles sont les mutations à observer)
-    // let config = { attributes: true, childList: true, subtree: true };
-    // // Créé une instance de l'observateur lié à la fonction de callback
-    // let monObserver = new MutationObserver(handleSubmit);
-    // // Commence à observer le noeud cible pour les mutations précédemment configurées
-    // monObserver.observe(maNode, config);
-
-    //     function handleSubmit(event) {
-    //         event.preventDefault();
-    //         const data = new FormData(event.target);
-    //         // const data = new FormData(form);
-    //         console.log(data);
-    //         const value = data.get('email');
-    //         // console.log(value);
-    //         }
-    //         const form = document.querySelector('form');
-    //         // console.log(form);
-    //         form.addEventListener('submit', handleSubmit);
-
-
-
-
-
-
-
-
-
-
-
-
 
     
     function modificationPrix(id, operation) {

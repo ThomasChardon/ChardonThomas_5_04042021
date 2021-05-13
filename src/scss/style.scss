@@ -75,6 +75,23 @@ a {
     color:$noir;
     cursor: pointer;
 }
+
+// formulaire
+
+input {
+    &:focus{
+        outline: none;
+        border: 2px solid $couleur-primaire;
+    }
+    &:not(:focus):not(:placeholder-shown):invalid {
+        border: 2px solid red;
+    }
+}
+  
+
+
+// boutons
+
 button {
     @include police(1.5em);
     @include flex_center(center);
@@ -341,7 +358,7 @@ header {
                 display: inline-block;
                 height: 30px;
                 width: 400px;
-                border-radius: 10px;
+                border-radius: 20px;
             }
             .bouton_commander {
                 @include police(1em);
