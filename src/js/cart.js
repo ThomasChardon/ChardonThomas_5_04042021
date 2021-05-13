@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               let btnSuppressionTotale = document.getElementById('suppression_panier');
               btnSuppressionTotale.addEventListener('click', function(){clearPanier()});
+              btnSuppressionTotale.addEventListener('click', function(){document.location.reload()});
               let btnAjout = document.getElementsByClassName('bouton_increment_panier');
               let btnminus = document.getElementsByClassName('bouton_decrement_panier');
               let btndelete = document.getElementsByClassName('bouton_delete_panier');
@@ -188,10 +189,10 @@ document.addEventListener("DOMContentLoaded", () => {
           let order_id = 0;
         //   ajoutOrderID(); 
           order_id = recuperationOrderID();
-          console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
-          let contact = new Object;
-          let produits = [];
-          produits = recuperationPanierArray();
+        //   console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
+          let contact = new Object();
+          let products = [];
+          products = recuperationPanierArray();
           
           const inputs = monFormulaire.querySelectorAll("input");
           for (const items of inputs) {
@@ -199,13 +200,28 @@ document.addEventListener("DOMContentLoaded", () => {
               //   console.log(items.name);
               contact[items.name] = items.value;
             }
-            console.log(contact); // object ok i guess
-            console.log(produits); // tableau ok i guess
+            // console.log(contact); // object ok i guess
+            // console.log(products); // tableau ok i guess
+            const checkout = new Object();
+            checkout.contact = contact;
+            checkout.products = products;
+            // console.log(JSON.stringify(checkout));
             
+            fetch("http://localhost:3000/api/teddies/order", {
+            method: "POST",
+            headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify(checkout),
+            })
+            .then((res) => res.json())
+            .then((data) => order_id = data.orderId)
+            .then((oui) => console.log(order_id));
 
+            // console.log(order_id);
 
-          // il me faut un contact en objet et un tableau de produits
-    });
+            });
 
     // recup les données avec document get
 
