@@ -114,32 +114,36 @@ document.addEventListener("DOMContentLoaded", () => {
             //         }
             //     });
 
-            // function isValid(value) {
-            //     return /^e[0-9]{3,}$/.test(value);
-            // }
+            
 
 
               //window.location pour redirection
 
 
       });
-
-
-
-
-
-
-
-
-
-
-      
-      
-      
       let monFormulaire = document.getElementById('mon_formulaire');
-      // console.log(monFormulaire);
-      
-      
+
+      //validation des données 
+      function isValid(value) {
+            return /^[0-9A-Za-z@-]{1,40}$/.test(value);
+        }
+
+        function testFormulaire(champs) {
+            let value = champs.target.value;
+            if (isValid(value)) {
+                console.log("Valide");
+                monFormulaire.bouton_clic.disabled = false;
+            } else {
+                monFormulaire.bouton_clic.disabled = true;
+                console.log("invalide");
+            }
+        }
+
+        let prenom = document.getElementById('id_firstname');
+        prenom.addEventListener('input', function(e) {testFormulaire(e)});
+        let nom = document.getElementById('id_lastname');
+        nom.addEventListener('input', function(e) {testFormulaire(e)});
+        
       
       monFormulaire.addEventListener("submit", function (event) {
           event.preventDefault();
@@ -184,12 +188,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 let URL = "../../pages/confirmation/?Order_id=" + order_id + "&firstName=" + firstName + "&lastName=" + lastName
                 + "&address=" + address + "&city=" + city + "&email=" + email;
+
+                // ajouter la commande... prix total surement, nombre d'articles maybe
+
                 // console.log(data);
-                window.location.assign(URL);
+                // window.location.assign(URL);
             });
-            //ajouter prenom nom adresse ville email
-            
-            
+
         }); // fin du clic formulaire
         
     }
