@@ -128,11 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return /^[0-9A-Za-z@-]{1,40}$/.test(value);
         }
 
-        function testFormulaire(champs) {
-            let value = champs.target.value;
-            if (isValid(value)) {
-                console.log("Valide");
+        function testFormulaire() {
+            if (isValid(nom.value) && isValid(prenom.value) && isValid(adresse.value) && isValid(ville.value) && isValid(mail.value)) {
                 monFormulaire.bouton_clic.disabled = false;
+                console.log("OK");
             } else {
                 monFormulaire.bouton_clic.disabled = true;
                 console.log("invalide");
@@ -140,11 +139,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let prenom = document.getElementById('id_firstname');
-        prenom.addEventListener('input', function(e) {testFormulaire(e)});
         let nom = document.getElementById('id_lastname');
-        nom.addEventListener('input', function(e) {testFormulaire(e)});
+        let adresse = document.getElementById('id_adress');
+        let ville = document.getElementById('id_city');
+        let mail = document.getElementById('email');
+        prenom.addEventListener('input', function() {testFormulaire()});
+        nom.addEventListener('input', function() {testFormulaire()});
+        adresse.addEventListener('input', function() {testFormulaire()});
+        ville.addEventListener('input', function() {testFormulaire()});
+        mail.addEventListener('input', function() {testFormulaire()});
         
-      
+
+      //envoi des données
       monFormulaire.addEventListener("submit", function (event) {
           event.preventDefault();
 
