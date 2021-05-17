@@ -371,6 +371,29 @@ header {
     }
 }
 
+//page finalisation
+#finalisation {
+    @include police($large);
+    @include marges-auto($large);
+    @include flex_center(center);
+    flex-direction: column;
+    height: 600px;
+    // background-color: red;
+    border-radius: 40px;
+    box-shadow: 0 4px 4px darken($blanc, 10%);
+    background-color: $couleur-primaire;
+    margin-top: $large;
+    margin-bottom: $large;
+    #adresse_facturation {
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+        box-shadow: 0 4px 4px $noir;
+        background-color: $couleur-secondaire;
+        height: 150px;
+        width: 1000px;
+    }
+}
 
 //footer
 footer {

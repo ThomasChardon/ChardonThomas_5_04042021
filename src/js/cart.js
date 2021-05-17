@@ -103,29 +103,12 @@ document.addEventListener("DOMContentLoaded", () => {
             observer.observe(targetNode, config);
 
 
-
-              // validation des données
-            //   myInput.addEventListener('input',function(e) {
-            //     var value = e.target.value;
-            //         if (value.startsWith('Hello ')) {
-            //             isValid = true;
-            //         } else {
-            //             isValid = false;
-            //         }
-            //     });
-
-            
-
-
-              //window.location pour redirection
-
-
       });
       let monFormulaire = document.getElementById('mon_formulaire');
 
       //validation des données 
       function isValid(value) {
-            return /^[0-9A-Za-z@-]{1,40}$/.test(value);
+            return /^[0-9A-Za-z@-\sàéèôç\/\'.]{1,40}$/.test(value);
         }
 
         function testFormulaire() {
@@ -191,14 +174,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 let address = data.contact.address;
                 let city = data.contact.city;
                 let email = data.contact.email;
+                let totalours = recuperationPanierArray().length;
+                
                 
                 let URL = "../../pages/confirmation/?Order_id=" + order_id + "&firstName=" + firstName + "&lastName=" + lastName
-                + "&address=" + address + "&city=" + city + "&email=" + email;
+                + "&address=" + address + "&city=" + city + "&email=" + email + "&prixtotal=" + prixTotal + "&totalours=" + totalours;
 
                 // ajouter la commande... prix total surement, nombre d'articles maybe
 
                 // console.log(data);
-                // window.location.assign(URL);
+                window.location.assign(URL);
             });
 
         }); // fin du clic formulaire
