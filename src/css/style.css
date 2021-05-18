@@ -73,14 +73,39 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+@media screen and (min-width: 1100px) and (max-width: 1599px) {
+  .max-width-container {
+    width: 1060px;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1099px) {
+  .max-width-container {
+    width: 530px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  .max-width-container {
+    width: 300px;
+  }
+}
 
 header {
   background-color: #f3e9f0;
+}
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  header .logo {
+    height: 140px;
+  }
 }
 header .entete {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+@media screen and (min-width: 320px) and (max-width: 1099px) {
+  header .entete {
+    flex-direction: column;
+  }
 }
 header .entete nav ul {
   width: 600px;
@@ -89,6 +114,12 @@ header .entete nav ul {
   list-style-type: none;
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: 2em;
+}
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  header .entete nav ul {
+    flex-direction: column;
+    width: 200px;
+  }
 }
 header .entete nav ul li, header .entete nav ul a {
   display: flex;
@@ -107,6 +138,12 @@ header .entete nav ul #pastille_panier {
   background-color: red;
 }
 
+@media screen and (min-width: 320px) and (max-width: 1599px) {
+  .contenu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
 .contenu h1 {
   font-family: "Architects Daughter", cursive, Arial, Helvetica, sans-serif;
   font-size: normal;
@@ -131,6 +168,13 @@ header .entete nav ul #pastille_panier {
   box-shadow: 0 4px 4px #e6e6e6;
   color: #000;
   overflow: hidden;
+}
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  .article {
+    margin-right: 0;
+    margin-left: 0;
+    width: 300px;
+  }
 }
 .article div {
   height: 250px;
@@ -378,6 +422,15 @@ footer ul {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
+}
+@media screen and (min-width: 320px) and (max-width: 599px) {
+  footer ul {
+    flex-direction: column;
+    padding-left: 0;
+  }
+}
+footer ul li {
+  margin: 0 0 30px 0;
 }
 
 /*# sourceMappingURL=style.css.map */

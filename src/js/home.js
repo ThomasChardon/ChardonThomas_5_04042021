@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const listeArticle = document.querySelector(".liste_articles_accueil");
     
     if (listeArticle) {
-        console.log(listeArticle);
       fetch("http://localhost:3000/api/teddies")
       .then((res) => res.json()) // conversion JSON
       .then((data) => {
@@ -24,9 +23,5 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       //On affiche la pastille qu'une fois parce qu'elle n'est pas destinée à changer sur cette page
       AffichagePastille();
-
-
-
     }
-
 })

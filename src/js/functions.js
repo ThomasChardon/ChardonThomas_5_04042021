@@ -4,30 +4,13 @@ export function $_GET(argument) { // export function : permet de l'envoyer dans 
   
   return url.searchParams.get(argument); // cherche l'argument dans les parametres de l'url. Renvoie null ou la valeur de cet argument
 }
-  
-//exemple : let mavariable = $_GET(id); // mavariable vaudra la valeur de l'id dans l'url
 
-// export let totauxDesPrix = new Object;
-// export let listeDesPrix = new Object;
-// export let prixTotal = 0;
 
 let OrderId = 0;
 let panier = "";
 let listePanier = [];
 
-export function recuperationOrderID() {
-  let IDEnCours = localStorage.getItem("Orderid");
-  return IDEnCours;
-}
-export function ajoutOrderID() { // ajout ID
-  OrderId = recuperationOrderID();
-  if (OrderId == null || OrderId == "") {
-    OrderId = 0;
-  } else {
-    OrderId++;
-  }
-  localStorage.setItem("Orderid", OrderId);
-}
+
 
 export function ajoutPanier(leID) { // ajout
   panier = recuperationPanier();
@@ -47,10 +30,9 @@ export function recuperationPanier() {
 export function recuperationPanierArray() {
   panier = recuperationPanier();
   if (!panier) {
-      console.log("Pas de panier")
       listePanier.splice(0, listePanier.length); // RAZ tableau
   }
-  else if (panier.length > 30) {
+  else if (panier.length > 30) { // un id fait ~25 caractères (5be9c8541c9d440000665243)
       listePanier = panier.split(',');
   } else {
       listePanier[0] = panier;
@@ -86,10 +68,10 @@ export function clearPanier () {
 
 export function clearProductPanier (id) {
   listePanier = recuperationPanierArray();
-
+  
   if (listePanier == null){
     console.log("Pas de retrait car panier vide");
-} else {
+  } else {
     for (let i = 0; i < listePanier.length; i++) {
         if (listePanier[i] == id) {
             listePanier.splice(i, 1); //retrait d'un élément du panier
@@ -106,7 +88,7 @@ export function clearProductPanier (id) {
       panier = listePanier.toString();
       localStorage.setItem("id", panier);
     }
-}
+  }
 }
 
 export function retraitDuPanier (id) {

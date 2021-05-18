@@ -1,6 +1,5 @@
 
-import {ajoutOrderID, recuperationOrderID, recuperationPanierArray, recuperationQuantite, 
-    clearProductPanier, retraitDuPanier, ajoutPanier, clearPanier, AffichagePastille} from './functions.js';
+import {recuperationPanierArray, recuperationQuantite, clearProductPanier, retraitDuPanier, ajoutPanier, clearPanier, AffichagePastille} from './functions.js';
 const listeArticlePanier = document.querySelector(".liste_articles_panier");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -134,29 +133,20 @@ document.addEventListener("DOMContentLoaded", () => {
         
 
       //envoi des données
-      monFormulaire.addEventListener("submit", function (event) {
+      monFormulaire.addEventListener("submit", function (event) { //clic formulaire
           event.preventDefault();
 
-          let order_id = 0;
-          //   ajoutOrderID(); 
-          order_id = recuperationOrderID();
-          //   console.log(order_id); // order id ok, réactiver ajout order pour incrémenter plus tard
           let contact = new Object();
           let products = [];
           products = recuperationPanierArray();
           
           const inputs = monFormulaire.querySelectorAll("input");
           for (const items of inputs) {
-              //   console.log(items.value);
-              //   console.log(items.name);
               contact[items.name] = items.value;
             }
-            // console.log(contact); // object ok i guess
-            // console.log(products); // tableau ok i guess
             const checkout = new Object();
             checkout.contact = contact;
             checkout.products = products;
-            // console.log(JSON.stringify(checkout));
             
             fetch("http://localhost:3000/api/teddies/order", {
                 method: "POST",
@@ -168,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then((res) => res.json())
             .then((data) => {
-                order_id = data.orderId;
+                let order_id = data.orderId;
                 let firstName = data.contact.firstName;
                 let lastName = data.contact.lastName;
                 let address = data.contact.address;
@@ -176,11 +166,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 let email = data.contact.email;
                 let totalours = recuperationPanierArray().length;
                 
-                
                 let URL = "../../pages/confirmation/?Order_id=" + order_id + "&firstName=" + firstName + "&lastName=" + lastName
                 + "&address=" + address + "&city=" + city + "&email=" + email + "&prixtotal=" + prixTotal + "&totalours=" + totalours;
-
-                // ajouter la commande... prix total surement, nombre d'articles maybe
 
                 // console.log(data);
                 window.location.assign(URL);
@@ -189,18 +176,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }); // fin du clic formulaire
         
     }
-    // recup les données avec document get
-
-    // verif mes données
-
-    // bloquer soumission données (bloquer en css pointer event)
-
-    //new form data
-
-    //conversion json
-
-    //post
-
     
     function modificationPrix(id, operation) {
         if (operation == "+") {
@@ -226,11 +201,5 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Error operation");
         }
     }
-
-
-
-
-
-
 
 })
