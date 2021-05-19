@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="renseignement_texte">
                             Quantité commandée : ${nombreourspanier}, prix total : ${prixCalcule /100},${prixCalcule %100} €.
                         </div>
+                        <div class="div_boutons">
                         <button class="bouton_increment_panier">
                             +
                         </button>
@@ -40,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <button class="bouton_delete_panier">
                             X
                         </button>
+                        </div>
                     </div>
                     <div class="bordure_panier">
                          
