@@ -6,9 +6,12 @@
         flex-wrap: wrap;
     } 
     h1 {
-        @include police();
+        @include police(2em);
         margin-left: $espace_articles;
         margin-bottom: $espace_articles;
+        @media screen and (min-width: 320px) and (max-width: 599px)  {
+            @include police(1.5em);
+        } 
     }
 }
 
