@@ -1,0 +1,51 @@
+//page finalisation
+#finalisation {
+    @include police($large);
+    @include marges-auto($large);
+    @include flex_center(center);
+    flex-direction: column;
+    height: 600px;
+    // background-color: red;
+    border-radius: 40px;
+    box-shadow: 0 4px 4px darken($blanc, 10%);
+    background-color: $couleur-primaire;
+    margin-top: $large;
+    margin-bottom: $large;
+    @media screen and (min-width: 320px) and (max-width: 1600px)  {
+        padding:50px;
+    }
+    @media screen and (min-width: 800px) and (max-width: 1200px)  {
+        height: 700px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 799px)  {
+        height: 600px;
+        @include police(1.5em);
+        align-content: space-between;
+    }
+    @media screen and (min-width: 320px) and (max-width: 599px)  {
+        @include police(1.1em);
+    }
+    #adresse_facturation {
+        display: flex;
+        justify-content: center;
+        border-radius: 20px;
+        box-shadow: 0 4px 4px $noir;
+        background-color: $couleur-secondaire;
+        height: 150px;
+        width: 900px;
+        @media screen and (min-width: 320px) and (max-width: 1600px)  {
+            padding:20px;
+        }
+        @media screen and (min-width: 800px) and (max-width: 1100px)  {
+            width: 500px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 799px)  {
+            width: 350px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 599px)  {
+            @include police(1.2em);
+            height: 200px;
+            width: 150px;
+        }
+    }
+}

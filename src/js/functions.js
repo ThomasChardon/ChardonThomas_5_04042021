@@ -5,14 +5,11 @@ export function $_GET(argument) { // export function : permet de l'envoyer dans 
   return url.searchParams.get(argument); // cherche l'argument dans les parametres de l'url. Renvoie null ou la valeur de cet argument
 }
 
-
-let OrderId = 0;
 let panier = "";
 let listePanier = [];
 
 
-
-export function ajoutPanier(leID) { // ajout
+export function ajoutPanier(leID) {
   panier = recuperationPanier();
   if (panier == null || panier == "") {
       panier = leID;
@@ -94,7 +91,6 @@ export function clearProductPanier (id) {
 export function retraitDuPanier (id) {
   panier = recuperationPanier();
   listePanier = recuperationPanierArray();
-  // console.log("Panier avant retrait : " + listePanier);
   if (listePanier == null){
       console.log("Pas de retrait car panier vide");
   } else {
@@ -118,7 +114,6 @@ export function retraitDuPanier (id) {
         localStorage.setItem("id", panier);
       }
   }
-  // console.log("Panier APRES retrait : " + panier);
 }
 
 //Ajout de la pastille si il y a des articles dans le panier

@@ -1,0 +1,19 @@
+//mixins
+@mixin flex_center($align-center : initial) /*Celle ci permet d'aligner automatiquement sur l'axe horizontal, avec vertical en option*/
+{
+    display: flex;
+    justify-content: center;
+    align-items: $align-center;
+}
+
+@mixin police($grand :normal)
+{
+    font-family: 'Architects Daughter', cursive, Arial, Helvetica, sans-serif;
+    font-size: $grand;
+}
+
+@mixin marges-auto($specification : auto) //pour mettre les marges auto avec marge spécifique en option
+{
+    margin-right: $specification;
+    margin-left: $specification;
+}

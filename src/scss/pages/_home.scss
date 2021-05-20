@@ -1,0 +1,59 @@
+//page principale
+// articles 
+.contenu {
+    @media screen and (min-width: 320px) and (max-width: 1599px)  {
+        display: flex;
+        flex-wrap: wrap;
+    } 
+    h1 {
+        @include police();
+        margin-left: $espace_articles;
+        margin-bottom: $espace_articles;
+    }
+}
+
+
+.liste_articles_accueil {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.article {
+    @include police();
+    @include marges-auto($espace_articles);
+    margin-bottom: $espace_articles;
+    width : 400px;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0 4px 4px darken($blanc, 10%);
+    color:$noir;
+    overflow: hidden;
+    @media screen and (min-width: 320px) and (max-width: 599px)  {
+        @include marges-auto(0);
+        width: 300px;
+    } 
+    div {
+        height : 250px;
+        overflow: hidden;
+    }
+    a {
+        width: 100%;
+    }
+    .produit_ours {
+        width: 100%;
+        object-fit: cover;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        transition: all 0.4s;
+    }
+    &:hover a img {
+        transform:scale(1.25);
+        transition: all 0.4s;
+    }
+
+    h2 {
+        @include flex_center(center);
+        margin: auto;
+        margin-top: 5px;
+    }
+}
