@@ -305,6 +305,9 @@ header {
         @include police(1.5em);
         margin : 0;
         margin-left : $espace_articles;
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            @include police(1em);
+        }
     }
     #suppression_panier {
         background-color: $couleur-rouge-leger;
@@ -324,6 +327,11 @@ header {
     @media screen and (min-width: 1100px) and (max-width: 1600px)  {
         @include police(small);
     }
+    @media screen and (min-width: 320px) and (max-width: 1099px)  {
+        @include police(small);
+        flex-direction: column;
+        height: 450px;
+    }
     div {
         overflow: hidden;
     }
@@ -337,13 +345,26 @@ header {
         @media screen and (min-width: 1100px) and (max-width: 1600px)  {
             flex-direction: column;
         }
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            flex-direction: column;
+            width: 100%;
+            order: 2;
+            margin-top: 20px;
+        }
         .div_boutons {
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
             width: 25%;
-            @media screen and (min-width: 1100px) and (max-width: 1600px)  {
+            @media screen and (min-width: 320px) and (max-width: 1600px)  {
                 width: 100%;
+                height: 80px;
+                align-content: center;
+            }
+            button {
+                @media screen and (min-width: 320px) and (max-width: 1600px)  {
+                    margin : 10px;
+                }
             }
         }
     }
@@ -352,12 +373,18 @@ header {
         height: 40px;
         margin-top: 30px;
         margin-bottom: 30px;
-        @media screen and (min-width: 1100px) and (max-width: 1600px)  {
+        @media screen and (min-width: 320px) and (max-width: 1600px)  {
             margin-top: 0;
             margin-bottom: 0;
             width: 90%;
             margin-right: auto;
             margin-left: auto;
+        }
+        @media screen and (min-width: 600px) and (max-width: 1099px)  {
+            height: 80px;
+        }
+        @media screen and (min-width: 320px) and (max-width: 599px)  {
+            @include police(small);
         }
     }
     #titre_total {
@@ -368,6 +395,9 @@ header {
         height: 100%;
         // background-color: red;
         background-color: darken($blanc, 10%);
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            display: none;
+        }
     }
     .produit_ours_panier {
         width: 100%;
@@ -377,9 +407,17 @@ header {
         border-top-right-radius: 20px;
         transform-origin: left;
         transition: all 0.4s;
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            transform-origin: bottom;
+        }
     }
     .photo_produit_panier {
         width: 33%;
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            order: 1;
+            width: 100%;
+            height: 200px;
+        }
     }
     &:hover a img {
         transform:scale(1.25);
@@ -392,6 +430,9 @@ header {
         justify-content: center;
         padding-right: 30px;
         padding-left: 30px;
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            order: 1;
+        }
     }
 }
 .renseignement_finalisation {
@@ -406,6 +447,18 @@ header {
     @media screen and (min-width: 1100px) and (max-width: 1600px)  {
         width: 100%;
     }
+    @media screen and (min-width: 320px) and (max-width: 1099px)  {
+        @include police(1em);
+        width: 100%;
+        height: 500px;
+        margin-top: 50px;
+        flex-direction: column;
+    }
+    h2 {
+        @media screen and (min-width: 1100px) and (max-width: 1600px)  {
+            @include police(1em);
+        }
+    }
     #renseignement_total {
         margin-left: 30px;
         text-align: center;
@@ -414,6 +467,9 @@ header {
         @include flex_center(center);
         @include police();
         height: 100%;
+        @media screen and (min-width: 320px) and (max-width: 1099px)  {
+            width: 80%;
+        }
         div {
             width: 100%;
             label{
@@ -421,12 +477,18 @@ header {
                 clear: left;
                 width: 250px;
                 text-align: right;
+                @media screen and (min-width: 320px) and (max-width: 600px)  {
+                    text-align: center;
+                }
             }
             input {
                 display: inline-block;
                 height: 30px;
                 width: 400px;
                 border-radius: 20px;
+                @media screen and (min-width: 320px) and (max-width: 600px)  {
+                    width: 230px;
+                }
             }
             .bouton_commander {
                 @include police(1em);
@@ -434,6 +496,19 @@ header {
                 position: relative;// sert à positionner un peu plus a gauche
                 left: -150px;
                 margin-top : 10px;
+                @media screen and (min-width: 1100px) and (max-width: 1600px)  {
+                    left: -50px;
+                }
+                @media screen and (min-width: 600px) and (max-width: 1099px)  {
+                    margin-top: 20px;
+                    left: 80px;
+                    width: 250px;
+                }
+                @media screen and (min-width: 320px) and (max-width: 599px)  {
+                    margin-top: 20px;
+                    left: 50px;
+                    width: 150px;
+                }
             }
         }
     }
