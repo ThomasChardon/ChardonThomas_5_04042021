@@ -70,26 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
               let totaux = document.getElementById('renseignement_total');
           
               for (let item of btnAjout) { // pour chaque noeud de ma classe bouton
-                  item.addEventListener('click', function(){ajoutPanier(item.parentNode.parentNode.id)});
-                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "+")});
-                  item.addEventListener('click', function(){item.previousElementSibling.innerHTML = `Quantité commandée : 
-                  ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total : 
-                  ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
-                  item.addEventListener('click', function(){prixTotal += listeDesPrix[item.parentNode.parentNode.id]});
+                  item.addEventListener('click', function(){ajoutPanier(item.parentNode.parentNode.parentNode.id)});
+                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.parentNode.id, "+")});
+                  item.addEventListener('click', function(){item.parentNode.previousElementSibling.innerHTML = `Quantité commandée : 
+                  ${recuperationQuantite(item.parentNode.parentNode.parentNode.id)}, prix total : 
+                  ${totauxDesPrix[item.parentNode.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.parentNode.id] %100} €.`}); // marche
+                  item.addEventListener('click', function(){prixTotal += listeDesPrix[item.parentNode.parentNode.parentNode.id]});
                   item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
               }
               for (let item of btnminus) { // pour chaque noeud de ma classe bouton
-                  item.addEventListener('click', function(){retraitDuPanier(item.parentNode.parentNode.id)});
-                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "-")});
-                  item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : 
-                  ${recuperationQuantite(item.parentNode.parentNode.id)}, prix total :
-                  ${totauxDesPrix[item.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.id] %100} €.`}); // marche
+                  item.addEventListener('click', function(){retraitDuPanier(item.parentNode.parentNode.parentNode.id)});
+                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.parentNode.id, "-")});
+                  item.addEventListener('click', function(){item.parentNode.previousElementSibling.innerHTML = `Quantité commandée : 
+                  ${recuperationQuantite(item.parentNode.parentNode.parentNode.id)}, prix total :
+                  ${totauxDesPrix[item.parentNode.parentNode.parentNode.id] /100},${totauxDesPrix[item.parentNode.parentNode.parentNode.id] %100} €.`}); // marche
                   item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
               }
               for (let item of btndelete) { // pour chaque noeud de ma classe bouton
-                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.id, "--")});
-                  item.addEventListener('click', function(){clearProductPanier(item.parentNode.parentNode.id)});
-                  item.addEventListener('click', function(){item.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML = `Quantité commandée : ${recuperationQuantite(item.parentNode.parentNode.id)}.`}); // marche
+                  item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.parentNode.id, "--")});
+                  item.addEventListener('click', function(){clearProductPanier(item.parentNode.parentNode.parentNode.id)});
+                  item.addEventListener('click', function(){item.parentNode.previousElementSibling.innerHTML = `Quantité commandée : ${recuperationQuantite(item.parentNode.parentNode.id)}.`}); // marche
                   item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
               }
               AffichagePastille(); // On affiche la pastille une première fois, et ensuite on observe les changements

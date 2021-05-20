@@ -123,10 +123,12 @@ export function AffichagePastille() {
   if (nombreourspanier.length > 9) {
     maPastille.innerHTML = "9+";
     maPastille.style.display = "inherit";
+    maPastille.style.opacity = 1;
   } else if (nombreourspanier.length == 0) {
-    maPastille.style.display = "none";
+    maPastille.style.opacity = 0;
   }else {
     maPastille.innerHTML = nombreourspanier.length;
     maPastille.style.display = "inherit";
+    maPastille.style.opacity = 1;
   }
 }
