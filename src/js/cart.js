@@ -89,7 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
               for (let item of btndelete) { // pour chaque noeud de ma classe bouton
                   item.addEventListener('click', function(){modificationPrix(item.parentNode.parentNode.parentNode.id, "--")});
                   item.addEventListener('click', function(){clearProductPanier(item.parentNode.parentNode.parentNode.id)});
+<<<<<<< HEAD
                   item.addEventListener('click', function(){item.parentNode.parentNode.parentNode.remove()}); 
+=======
+                  item.addEventListener('click', function(){item.parentNode.parentNode.parentNode.remove()}); // marche
+>>>>>>> 91ff32902026e7c74bb7d3378d10a0e0cb8c4d9b
                   item.addEventListener('click', function(){totaux.innerHTML = (prixTotal /100 + "," + prixTotal %100 + " €")});
               }
               AffichagePastille(); // On affiche la pastille une première fois, et ensuite on observe les changements
