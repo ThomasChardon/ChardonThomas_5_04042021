@@ -34,7 +34,7 @@ if (produitseul) { // SI je suis sur la page de présentation d'un article seule
         btnAjout.addEventListener('click', function(){AffichagePastille()}); 
         
         let btndelete = document.getElementById('bouton_delete_panier'); // mon id dans le HTML
-        btndelete.addEventListener('click', function(){clearProductPanier(oursid)}); // action associée
+        btndelete.addEventListener('click', function(){clearProductPanier(oursid)});
         btndelete.addEventListener('click', function(){AffichagePastille()}); 
         
         let btnminus = document.getElementById('bouton_minus_panier');
